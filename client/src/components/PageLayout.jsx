@@ -1,15 +1,33 @@
 import React, { useEffect, useState } from "react";
 
-const PageLayout = () => {
+const PageLayout = (props) => {
   const [news, setNews] = useState([]);
-
+  // const [name, setName] = useState("madhhffhfvesh");
+  // const [password, setPassword] = useState("madhvjfghfesh");
+  // const sample = async () => {
+  //   const sample = await fetch("http://localhost:5000/sample", {
+  //     method: "POST",
+  //      mode: "cors",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+       
+  //     }),
+  //   })
+  //     .then((data) => {
+  //       console.log("completed");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
   const data = () => {
-    var apikey = "011a4bb168875ebd5c3bc441672271d1";
-    var category = "general";
+    const apikey = "011a4bb168875ebd5c3bc441672271d1";
     var url =
       "https://gnews.io/api/v4/top-headlines?category=" +
-      category +
-      "&lang=en&country=us&max=10&apikey=" +
+      props.category +
+      "&lang=en&country=us&max=100&apikey=" +
       apikey;
 
     fetch(url)
@@ -17,17 +35,17 @@ const PageLayout = () => {
         return response.json();
       })
       .then(function (data) {
-        var articles = data.articles.slice(0, 5);
+        var articles = data.articles.slice(0, 20);
         setNews(articles);
         console.log(news);
       });
   };
-  useEffect(() => {
-    data();
-  
-    
-  }, [])
-  
+ useEffect(() => {
+   
+ data()
+   
+ },[props.category] )
+ 
 
   return (
     <div>
