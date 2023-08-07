@@ -2,6 +2,8 @@ import NavBar from "./components/NavBar";
 import PageLayout from "./components/PageLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/Footer";
+import SignIn from "./Authentication/SignIn";
+import SignUp from "./Authentication/SignUp";
 
 function App() {
   const router = createBrowserRouter([
@@ -35,6 +37,14 @@ function App() {
             {
               path: "/sports",
               element: <PageLayout category="sports" />,
+            },
+            {
+              path: "/signin",
+              element: <SignIn />,
+            },
+            {
+              path: "/signup",
+              element: <SignUp />,
             },
           ],
         },
