@@ -59,7 +59,7 @@ function SignUp() {
           
         />
 
-        <button type="submit">Login</button>
+        <button type="submit">SignUp</button>
       </form>
     </div>
   );

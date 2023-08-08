@@ -1,7 +1,14 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
-
+import { Link, useNavigate, Outlet } from "react-router-dom";
+import { useSignOut } from "react-auth-kit";
 const NavBar = () => {
+  const signOut = useSignOut()
+  const navigate = useNavigate()
+
+  const logout = () => {
+      signOut()
+      navigate('/signin')
+  }
   return (
     
     <div>
@@ -15,6 +22,7 @@ const NavBar = () => {
         <Link to="/business">Business</Link>
         <Link to="/health">Health</Link>
         <Link to="/sports">Sports</Link>
+        <button onClick={logout}>Logout</button>
         </div>
       </nav>
       <Outlet />

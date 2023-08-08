@@ -28,30 +28,16 @@ exports.signIn = async (req, res) => {
       res.status(201).send("go to signin page");
     }
 
-    const isPasswordValid = await bcrypt.compare(dataCheck.password, data.password);
+    const isPasswordValid = await bcrypt.compare(data.password, dataCheck.password);
         if(isPasswordValid){
         const token =  jwt.sign({
             username:dataCheck.username,
-            password:dataCheck.password
           },'secret_key')
-          return res.json({  token: token })
+          return res.status(200).json({  token: token })
         }else{
-          return res.json({  token: false })
+          return res.status(401).send("user not exist")
         }
-    // .then((userDoc) => {
-    //   if (!userDoc) {
-    //     return res.redirect("/register");
-    //   }
-    //   bcrypt
-    //     .compare(data.password, userDoc.password)
-    //     .then((doMatch) => {
-    //       if (doMatch) return res.redirect("/");
-    //       res.redirect("/login");
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // });
+   
   } catch (error) {
     console.log(error);
   }

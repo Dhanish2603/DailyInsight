@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { Jwt } from "jsonwebtoken";
+import { useSignIn } from "react-auth-kit";
 function SignIn() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const signIn = useSignIn();
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     if (username.trim() !== "" && password.trim() !== "") {
       setIsLoggedIn(true);
       console.log(username);
-      const user =await fetch("http://localhost:5000/signin", {
+      const user = await fetch("http://localhost:5000/signin", {
         method: "POST",
         mode: "cors",
         headers: {
@@ -22,12 +23,25 @@ function SignIn() {
           password: password,
         }),
       });
-      const response = await user.json();
-      if(response){
-        localStorage.setItem("token",response.token)
-        navigate("/technology")
+
+      if (user.status != 200) {
+        if (window.confirm("USER DIESNT ECISTS!..YOU WANT TO SINGUP PAGE"))
+          window.location.href = "/signup";
       }
-      
+
+      const response = await user.json();
+      console.log(response.token);
+      signIn({
+        token: response.token,
+        expiresIn: 3600,
+        tokenType: "Bearer",
+        // info of user generally id or username or email
+        authState: { username: username },
+      });
+
+      if (response.token) {
+        window.location.href="/technology";
+      }
     } else {
       alert("Please enter a valid username and password.");
     }

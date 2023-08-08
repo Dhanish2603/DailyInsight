@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/Footer";
 import SignIn from "./Authentication/SignIn";
 import SignUp from "./Authentication/SignUp";
+import { RequireAuth } from "react-auth-kit";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,25 +19,29 @@ function App() {
           children: [
             {
               path: "/",
-              element: <PageLayout category="general" />,
+              element: <RequireAuth loginPath="/signin" ><PageLayout category="general" /></RequireAuth>,
             },
-
+            
             {
               path: "/technology",
-              element: <PageLayout category="technology" />,
+              element: <RequireAuth loginPath="/signin" ><PageLayout category="technology" /></RequireAuth>,
+              // element: <PageLayout category="technology" />,
             },
             {
               path: "/business",
-              element: <PageLayout category="business" />,
+              element: <RequireAuth loginPath="/signin" ><PageLayout category="business" /></RequireAuth>,
+              // element: <PageLayout category="business" />,
             },
             {
               path: "/health",
-              element: <PageLayout category="health" />,
+              // element: <PageLayout category="health" />,
+              element: <RequireAuth loginPath="/signin" ><PageLayout category="health" /></RequireAuth>,
             },
-
+            
             {
               path: "/sports",
-              element: <PageLayout category="sports" />,
+              // element: <PageLayout category="sports" />,
+              element: <RequireAuth loginPath="/signin" ><PageLayout category="sports" /></RequireAuth>,
             },
             {
               path: "/signin",
