@@ -35,12 +35,11 @@ function SignIn() {
         token: response.token,
         expiresIn: 3600,
         tokenType: "Bearer",
-        // info of user generally id or username or email
         authState: { username: username },
       });
 
       if (response.token) {
-        window.location.href="/technology";
+        window.location.href = "/";
       }
     } else {
       alert("Please enter a valid username and password.");
@@ -49,7 +48,7 @@ function SignIn() {
 
   return (
     <div className="login-container">
-      <h2>SignUp</h2>
+      <h2> Welcome to SignIn</h2>
       <form className="login-form" onSubmit={handleLogin} action="/">
         <label htmlFor="username">Username:</label>
         <input
@@ -71,8 +70,16 @@ function SignIn() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
-        <button type="submit">Login</button>
+        <div className="button">
+          <button type="submit">SignIn</button>
+          <button
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
+            SignUp
+          </button>
+        </div>
       </form>
     </div>
   );

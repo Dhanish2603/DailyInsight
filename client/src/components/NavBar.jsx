@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 import { useSignOut } from "react-auth-kit";
+
 const NavBar = () => {
   const signOut = useSignOut()
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ const NavBar = () => {
     <div>
       <nav>
         <div className="logo">
-          <h1>News Website</h1>
+          <h1 onClick={()=>{navigate("/")}}>NewsFeed</h1>
         </div>
         <div className="right">
         <Link to="/">Home</Link>
@@ -22,7 +23,9 @@ const NavBar = () => {
         <Link to="/business">Business</Link>
         <Link to="/health">Health</Link>
         <Link to="/sports">Sports</Link>
-        <button onClick={logout}>Logout</button>
+        <Link onClick={logout} className="button" to="/signin">
+        SignOut
+        </Link>
         </div>
       </nav>
       <Outlet />

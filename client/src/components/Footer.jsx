@@ -5,7 +5,7 @@ const Footer = () => {
     <>
       <Outlet />
       <footer>
-        <p>&copy; 2023 News Website. All rights reserved.</p>
+        <p>&copy; 2023 NewsFeed. All rights reserved.</p>
       </footer>
     </>
   );

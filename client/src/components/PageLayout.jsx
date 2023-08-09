@@ -2,26 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const PageLayout = (props) => {
   const [news, setNews] = useState([]);
-  // const [name, setName] = useState("madhhffhfvesh");
-  // const [password, setPassword] = useState("madhvjfghfesh");
-  // const sample = async () => {
-  //   const sample = await fetch("http://localhost:5000/sample", {
-  //     method: "POST",
-  //      mode: "cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-       
-  //     }),
-  //   })
-  //     .then((data) => {
-  //       console.log("completed");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+
   const data = () => {
     const apikey = "011a4bb168875ebd5c3bc441672271d1";
     var url =
@@ -40,15 +21,12 @@ const PageLayout = (props) => {
         console.log(news);
       });
   };
- useEffect(() => {
-   
- data()
-   
- },[props.category] )
- 
+  useEffect(() => {
+    data();
+  }, [props.category]);
 
   return (
-    <div>
+    <div className="container">
       <div className="news-section">
         {news.map((data, index) => {
           return (

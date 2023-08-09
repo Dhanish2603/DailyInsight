@@ -1,32 +1,34 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     if (username.trim() !== "" && password.trim() !== "") {
       setIsLoggedIn(true);
       console.log(username);
       const newsdata = fetch("http://localhost:5000/signup", {
-      method: "POST",
-       mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-       username:username,
-       password:password
-      }),
-    })
-      .then((data) => {
-        console.log("completed");
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((data) => {
+          console.log("completed");
+          navigate("/signin");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       // newsdata();
     } else {
       alert("Please enter a valid username and password.");
@@ -35,8 +37,8 @@ function SignUp() {
 
   return (
     <div className="login-container">
-      <h2>SignUp</h2>
-      <form className="login-form" onSubmit={handleLogin} action="/">
+      <h2>Welcome to SignUp</h2>
+      <form className="login-form" onSubmit={handleLogin} action="/signin">
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -56,10 +58,17 @@ function SignUp() {
           placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          
         />
-
-        <button type="submit">SignUp</button>
+        <div className="button">
+          <button type="submit">SignUp</button>
+          <button
+            onClick={() => {
+              navigate("/signin");
+            }}
+          >
+            SignIn
+          </button>
+        </div>
       </form>
     </div>
   );
