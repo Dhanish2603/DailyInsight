@@ -21,7 +21,17 @@ nav {
   background-color: #34495e;
   color: #fff;
   padding: 10px;
+  width: 100%;
   text-align: center;
+}
+nav h1 {
+  background-color: white;
+  color: #34495e;
+  border-radius: 12px;
+  padding: 2px;
+}
+nav .icon {
+  display: none;
 }
 nav .right {
   display: flex;
@@ -38,11 +48,12 @@ nav a {
   margin: 0 10px;
 }
 nav .button {
-  background-color: #34495e;
-  box-shadow: -1px 1px 2px 2px white;
-  cursor: pointer;
-  border: 1px #34495e;
-  color: white;
+  background-color: white;
+  font-weight: bolder;
+  font-size: 14px;
+  color: #34495e;
+  border-radius: 12px;
+  padding: 5px;
 }
 .container {
   width: 95%;
@@ -101,6 +112,15 @@ footer {
 
   width: 100%;
 }
+footer .footer-logo {
+  background-color: white;
+  color: #34495e;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0 2px;
+  padding: 5px;
+}
 .login-container {
   max-width: 400px;
   margin: 50px auto;
@@ -153,4 +173,28 @@ footer {
   color: white;
   padding: 10px;
   font-weight: bolder;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  nav .icon {
+    display: block;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+  }
+  .logo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
 }

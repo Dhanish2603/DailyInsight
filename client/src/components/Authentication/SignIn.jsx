@@ -25,7 +25,7 @@ function SignIn() {
       });
 
       if (user.status != 200) {
-        if (window.confirm("USER DIESNT ECISTS!..YOU WANT TO SINGUP PAGE"))
+        if (window.confirm("User Does no exist"))
           window.location.href = "/signup";
       }
 

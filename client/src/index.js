@@ -14,7 +14,7 @@ root.render(
       cookieSecure={false}
     >
       <AppContextProvider>
-      <App />
+        <App />
       </AppContextProvider>
     </AuthProvider>
   </React.StrictMode>

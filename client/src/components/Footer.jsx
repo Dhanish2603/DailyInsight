@@ -5,7 +5,10 @@ const Footer = () => {
     <>
       <Outlet />
       <footer>
-        <p>&copy; 2023 GlobalUpdate. All rights reserved.</p>
+        <p>
+          &copy; 2023 <span className="footer-logo">GlobalUpdate</span> All
+          rights reserved.
+        </p>
       </footer>
     </>
   );

@@ -10,7 +10,6 @@ import BookMarks from "./components/Layout/BookMarks";
 function App() {
   const router = createBrowserRouter([
     {
-      
       path: "/",
       element: <NavBar />,
       children: [
@@ -69,11 +68,9 @@ function App() {
                 </RequireAuth>
               ),
             },
-            
           ],
         },
       ],
-      
     },
     {
       path: "/signin",
