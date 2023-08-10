@@ -21,7 +21,7 @@ Before running this application, make sure you have the following installed:
 
 ```bash
 git clone https://github.com/Dhanish2603/GlobalUpdate.git
-cd mern-GlobalUpdate-app
+cd GlobalUpdate
 
 ```
 2. Install Dependencies
