@@ -2,7 +2,9 @@ const express = require("express");
 const routes = express.Router();
 const controller = require("../controller/controller");
 
-// routes.post("/sample",controller.sample)
+const middleware = require("../controller/middleware/bookmark")
+
+routes.post("/bookmark",controller.bookmark)
 routes.get("/", (req, res) => {
   res.send("hello welcome to news feed");
 });
