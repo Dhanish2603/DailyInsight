@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { AuthProvider } from "react-auth-kit";
-import AppContextProvider from "./components/context/AppContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -13,9 +12,7 @@ root.render(
       cookieDomain={window.location.hostname}
       cookieSecure={false}
     >
-      <AppContextProvider>
-        <App />
-      </AppContextProvider>
+      <App />
     </AuthProvider>
   </React.StrictMode>
 );
