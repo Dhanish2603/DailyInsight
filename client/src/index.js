@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { AuthProvider } from "react-auth-kit";
+import { Provider } from "react-redux";
+import store from "./store/redux";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -12,7 +14,9 @@ root.render(
       cookieDomain={window.location.hostname}
       cookieSecure={false}
     >
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </AuthProvider>
   </React.StrictMode>
 );

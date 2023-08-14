@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-
+import { useDispatch, useSelector } from 'react-redux'
+import { bookActions } from "../../store/book-redux";
 const PageLayout = (props) => {
   const [news, setNews] = useState([]);
+  const dispatch = useDispatch();
 
   const data = () => {
     const apikey = "011a4bb168875ebd5c3bc441672271d1";
@@ -18,9 +20,21 @@ const PageLayout = (props) => {
       .then(function (data) {
         var articles = data.articles.slice(0, 20);
         setNews(articles);
-        console.log(news);
+        // console.log(news);
       });
   };
+
+  const addNewsHandler =(bookData)=>{
+    const rawData = bookData;
+    dispatch(bookActions.addBookmark(rawData))
+
+  }
+  const removeNewsHandler=(bookData)=>{
+    dispatch(bookActions.removeBookmark(bookData))
+   
+  }
+    
+
   useEffect(() => {
     data();
   }, [props.category]);
@@ -36,6 +50,7 @@ const PageLayout = (props) => {
                 <h3>{data.title}</h3>
                 <p>{data.description}</p>
               </div>
+              <button onClick={()=>addNewsHandler(data)} className="bookmark">Add to Bookmark</button>
             </div>
           );
         })}

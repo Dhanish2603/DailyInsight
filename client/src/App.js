@@ -1,10 +1,12 @@
 import NavBar from "./components/NavBar";
-import PageLayout from "./components/PageLayout";
+import PageLayout from "./components/LayOut/PageLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/Footer";
-import SignIn from "./Authentication/SignIn";
-import SignUp from "./Authentication/SignUp";
+import SignIn from "./components/Authentication/SignIn";
+import SignUp from "./components/Authentication/SignUp";
 import { RequireAuth } from "react-auth-kit";
+import Bookmarks from "./components/LayOut/Bookmarks";
+import { Fragment } from "react";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +29,14 @@ function App() {
               ),
             },
 
+            {
+              path: "/bookmark",
+              element: (
+                <RequireAuth loginPath="/signin">
+                  <Bookmarks />
+                </RequireAuth>
+              ),
+            },
             {
               path: "/technology",
               element: (
@@ -76,9 +86,8 @@ function App() {
     },
   ]);
   return (
-    <div className="App">
-      <RouterProvider router={router} />
-    </div>
+        <RouterProvider router={router} /> 
+      
   );
 }
 
