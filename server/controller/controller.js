@@ -52,17 +52,32 @@ exports.signIn = async (req, res) => {
   }
 };
 
+exports.signOut = async (req,res)=>{
+  const token = req.cookies.token;
+  if(token){
+    console.log("sign out succesfully");
+  return res.cookie("token","",{
+    httpOnly:true,
+    expires:new Date(0)
+  }).send("deleted")
+  }
+  else{
+    res.send("already signout")
+    console.log("already sign out");
+  }
+}
+
 exports.bookmark = async (req, res) => {
   try {
-    const token = req.cookies;
-    console.log(token)
+    const token = req.cookies.token;
     const verified = jwt.verify(token, "secret_key");
     if (verified) {
       const authData = req.body;
+      console.log(authData);
       await auth
         .findOneAndUpdate(
           { username: verified.username },
-          { $push: { bookmark: [authData.bookmark] } }
+          { $push: { bookmark: [authData] } }
         )
         .then((user) => {
           console.log(user);

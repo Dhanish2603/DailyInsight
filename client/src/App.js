@@ -4,8 +4,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/Footer";
 import SignIn from "./components/Authentication/SignIn";
 import SignUp from "./components/Authentication/SignUp";
-import { RequireAuth } from "react-auth-kit";
 import BookMarks from "./components/Layout/BookMarks";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
 
 function App() {
   const router = createBrowserRouter([
@@ -20,53 +22,29 @@ function App() {
           children: [
             {
               path: "/",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <PageLayout category="general" />
-                </RequireAuth>
-              ),
+              element: <PageLayout category="general" />,
             },
 
             {
               path: "/bookmark",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <BookMarks />
-                </RequireAuth>
-              ),
+              element: <BookMarks />,
             },
             {
               path: "/technology",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <PageLayout category="technology" />
-                </RequireAuth>
-              ),
+              element: <PageLayout category="technology" />,
             },
             {
               path: "/business",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <PageLayout category="business" />
-                </RequireAuth>
-              ),
+              element: <PageLayout category="business" />,
             },
             {
               path: "/health",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <PageLayout category="health" />
-                </RequireAuth>
-              ),
+              element: <PageLayout category="health" />,
             },
 
             {
               path: "/sports",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <PageLayout category="sports" />
-                </RequireAuth>
-              ),
+              element: <PageLayout category="sports" />,
             },
           ],
         },

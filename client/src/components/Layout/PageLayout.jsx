@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { useAppContext } from "../context/AppContext";
+import axios from "axios";
 const PageLayout = (props) => {
   const [news, setNews] = useState([]);
-  const { readingList, addToReadingList, removefromReadingList } =
-    useAppContext();
-  console.log("list:", readingList);
 
-  const readingListCheck = (title) => {
-    const Check = readingList.some((data) => data.title === title);
-    return Check;
+  const datasend = async (book) => {
+    const { title, description, image } = book;
+    const article = { title, description, image };
+
+    await axios
+      .post("http://localhost:5000/bookmark", article, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
+
   const data = () => {
     const apikey = "011a4bb168875ebd5c3bc441672271d1";
     var url =
@@ -30,7 +41,7 @@ const PageLayout = (props) => {
   };
 
   useEffect(() => {
-    data();
+    // data();
   }, [props.category]);
 
   return (
@@ -43,22 +54,8 @@ const PageLayout = (props) => {
               <div className="news-card-content">
                 <h3>{data.title}</h3>
                 <p>{data.description}</p>
+                <button onClick={() => datasend(data)}>add to bookmark</button>
               </div>
-              {readingListCheck(data.title) ? (
-                <button
-                  className="add-list"
-                  onClick={() => removefromReadingList(data.title)}
-                >
-                  Remove from Bookmark
-                </button>
-              ) : (
-                <button
-                  className="add-list"
-                  onClick={() => addToReadingList(data)}
-                >
-                  Add to Bookmark
-                </button>
-              )}
             </div>
           );
         })}

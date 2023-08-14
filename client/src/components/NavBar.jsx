@@ -1,13 +1,12 @@
 import React from "react";
 import { Link, useNavigate, Outlet } from "react-router-dom";
-import { useSignOut } from "react-auth-kit";
+import axios from "axios";
 const NavBar = () => {
-  const signOut = useSignOut();
   const navigate = useNavigate();
-
   const logout = () => {
-    signOut();
-    navigate("/signin");
+    axios.post("http://localhost:5000/signout");
+    console.log("done");
+    navigate("/sigin");
   };
   return (
     <div>
