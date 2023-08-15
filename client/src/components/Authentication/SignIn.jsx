@@ -1,51 +1,39 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSignIn } from "react-auth-kit";
+import AuthContext from "../../store/context";
+
 function SignIn() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const authctx = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const signIn = useSignIn();
+
   const navigate = useNavigate();
   const handleLogin = async (e) => {
+
+    
+
     e.preventDefault();
     if (username.trim() !== "" && password.trim() !== "") {
-      setIsLoggedIn(true);
-      console.log(username);
-      const user = await fetch("http://localhost:5000/signin", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
+      const UserData = {
+        username,
+        password,
+      };
+      console.log(authctx.isSignIn);
+
+      // post request for user signup
+      await axios.post("http://localhost:5000/signin", UserData, {
+        withCredentials: true,
       });
-
-      if (user.status != 200) {
-        if (window.confirm("USER DIESNT ECISTS!..YOU WANT TO SINGUP PAGE"))
-          window.location.href = "/signup";
-      }
-
-      const response = await user.json();
-      console.log(response.token);
-      signIn({
-        token: response.token,
-        expiresIn: 3600,
-        tokenType: "Bearer",
-        authState: { username: username },
-      });
-
-      if (response.token) {
-        window.location.href = "/";
-      }
+      authctx.onFetch();
+      console.log(authctx.isSignIn);
     } else {
       alert("Please enter a valid username and password.");
     }
   };
 
+
+  
   return (
     <div className="login-container">
       <h2> Welcome to SignIn</h2>
@@ -71,14 +59,10 @@ function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <div className="button">
-          <button type="submit">SignIn</button>
-          <button
-            onClick={() => {
-              navigate("/signup");
-            }}
-          >
-            SignUp
+          <button type="submit" onClick={() => navigate("/")}>
+            SignIn
           </button>
+          <button onClick={() => navigate("/signup")}>SignUp</button>
         </div>
       </form>
     </div>

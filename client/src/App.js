@@ -1,84 +1,82 @@
 import NavBar from "./components/NavBar";
-import PageLayout from "./components/LayOut/PageLayout";
+import PageLayout from "./components/Layout/PageLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/Footer";
 import SignIn from "./components/Authentication/SignIn";
 import SignUp from "./components/Authentication/SignUp";
-import { RequireAuth } from "react-auth-kit";
-import Bookmarks from "./components/LayOut/Bookmarks";
-import { Fragment } from "react";
+import BookMarks from "./components/Layout/Bookmarks";
+import axios from "axios";
+import { useContext } from "react";
+import AuthContext from "./store/context";
+axios.defaults.withCredentials = true;
 
 function App() {
+  const ctx = useContext(AuthContext);
+
   const router = createBrowserRouter([
     {
-      
       path: "/",
-      element: <NavBar />,
+      element: ctx.isSignIn ? <NavBar /> : <SignIn />,
       children: [
         {
           path: "/",
-          element: <Footer />,
+          element: ctx.isSignIn ? <Footer /> : <SignIn />,
 
           children: [
             {
               path: "/",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <PageLayout category="general" />
-                </RequireAuth>
+              element: ctx.isSignIn ? (
+                <PageLayout category="general" />
+              ) : (
+                <SignIn />
               ),
             },
 
             {
               path: "/bookmark",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <Bookmarks />
-                </RequireAuth>
-              ),
+              element: ctx.isSignIn ? <BookMarks /> : <SignIn />,
             },
             {
               path: "/technology",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <PageLayout category="technology" />
-                </RequireAuth>
+              element: ctx.isSignIn ? (
+                <PageLayout category="technology" />
+              ) : (
+                <SignIn />
               ),
             },
             {
               path: "/business",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <PageLayout category="business" />
-                </RequireAuth>
+              element: ctx.isSignIn ? (
+                <PageLayout category="business" />
+              ) : (
+                <SignIn />
               ),
             },
             {
               path: "/health",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <PageLayout category="health" />
-                </RequireAuth>
+              element: ctx.isSignIn ? (
+                <PageLayout category="health" />
+              ) : (
+                <SignIn />
               ),
             },
 
             {
               path: "/sports",
-              element: (
-                <RequireAuth loginPath="/signin">
-                  <PageLayout category="sports" />
-                </RequireAuth>
+              element: ctx.isSignIn ? (
+                <PageLayout category="sports" />
+              ) : (
+                <SignIn />
               ),
             },
-            
           ],
         },
       ],
-      
     },
+  
     {
       path: "/signin",
-      element: <SignIn />,
+      element: ctx.isSignIn ? <PageLayout /> : <SignIn />,
     },
     {
       path: "/signup",
@@ -86,8 +84,9 @@ function App() {
     },
   ]);
   return (
-        <RouterProvider router={router} /> 
-      
+    <div className="App">
+      <RouterProvider router={router} />
+    </div>
   );
 }
 

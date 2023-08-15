@@ -1,9 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { bookActions } from "../../store/book-redux";
+import axios from "axios";
 const PageLayout = (props) => {
   const [news, setNews] = useState([]);
-  const dispatch = useDispatch();
+
+  const datasend = async (book) => {
+    const { title, description, image } = book;
+    const article = { title, description, image };
+
+    await axios
+      .post("http://localhost:5000/bookmark", article, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const data = () => {
     const apikey = "011a4bb168875ebd5c3bc441672271d1";
@@ -20,20 +36,9 @@ const PageLayout = (props) => {
       .then(function (data) {
         var articles = data.articles.slice(0, 20);
         setNews(articles);
-        // console.log(news);
+        console.log(news);
       });
   };
-
-  const addNewsHandler =(bookData)=>{
-    const rawData = bookData;
-    dispatch(bookActions.addBookmark(rawData))
-
-  }
-  const removeNewsHandler=(bookData)=>{
-    dispatch(bookActions.removeBookmark(bookData))
-   
-  }
-    
 
   useEffect(() => {
     data();
@@ -49,8 +54,8 @@ const PageLayout = (props) => {
               <div className="news-card-content">
                 <h3>{data.title}</h3>
                 <p>{data.description}</p>
+                <button onClick={() => datasend(data)}>add to bookmark</button>
               </div>
-              <button onClick={()=>addNewsHandler(data)} className="bookmark">Add to Bookmark</button>
             </div>
           );
         })}
