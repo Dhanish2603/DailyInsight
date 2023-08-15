@@ -3,6 +3,7 @@ const routes = express.Router();
 const controller = require("../controller/controller");
 
 const middleware = require("../controller/middleware/bookmark");
+routes.post("/cookieCheck",controller.cookieCheck);
 routes.post("/signout",controller.signOut);
 routes.post("/bookmark", controller.bookmark);
 routes.get("/", (req, res) => {
@@ -20,5 +21,7 @@ routes.post("/signup", controller.signUp);
 routes.get("/signup", (req, res) => {
   res.send("hello to sign up");
 });
+
+
 
 module.exports = routes;

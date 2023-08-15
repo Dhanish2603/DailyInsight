@@ -6,53 +6,77 @@ import SignIn from "./components/Authentication/SignIn";
 import SignUp from "./components/Authentication/SignUp";
 import BookMarks from "./components/Layout/BookMarks";
 import axios from "axios";
-
+import { useContext } from "react";
+import AuthContext from "./store/context";
 axios.defaults.withCredentials = true;
 
 function App() {
+  const ctx = useContext(AuthContext);
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <NavBar />,
+      element: ctx.isSignIn ? <NavBar /> : <SignIn />,
       children: [
         {
           path: "/",
-          element: <Footer />,
+          element: ctx.isSignIn ? <Footer /> : <SignIn />,
 
           children: [
             {
               path: "/",
-              element: <PageLayout category="general" />,
+              element: ctx.isSignIn ? (
+                <PageLayout category="general" />
+              ) : (
+                <SignIn />
+              ),
             },
 
             {
               path: "/bookmark",
-              element: <BookMarks />,
+              element: ctx.isSignIn ? <BookMarks /> : <SignIn />,
             },
             {
               path: "/technology",
-              element: <PageLayout category="technology" />,
+              element: ctx.isSignIn ? (
+                <PageLayout category="technology" />
+              ) : (
+                <SignIn />
+              ),
             },
             {
               path: "/business",
-              element: <PageLayout category="business" />,
+              element: ctx.isSignIn ? (
+                <PageLayout category="business" />
+              ) : (
+                <SignIn />
+              ),
             },
             {
               path: "/health",
-              element: <PageLayout category="health" />,
+              element: ctx.isSignIn ? (
+                <PageLayout category="health" />
+              ) : (
+                <SignIn />
+              ),
             },
 
             {
               path: "/sports",
-              element: <PageLayout category="sports" />,
+              element: ctx.isSignIn ? (
+                <PageLayout category="sports" />
+              ) : (
+                <SignIn />
+              ),
             },
           ],
         },
       ],
     },
+  
     {
       path: "/signin",
-      element: <SignIn />,
+      element: ctx.isSignIn ? <PageLayout /> : <SignIn />,
     },
     {
       path: "/signup",

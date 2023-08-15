@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
+import AuthContext from "../store/context";
+
 const NavBar = () => {
+  const authctx = useContext(AuthContext);
   const navigate = useNavigate();
   const logout = () => {
+    
+    console.log(authctx.isSignIn)
     axios.post("http://localhost:5000/signout");
     console.log("done");
+    authctx.onFetch();
+    console.log(authctx.isSignIn)
     navigate("/sigin");
   };
   return (

@@ -78,7 +78,7 @@ exports.bookmark = async (req, res) => {
         .findOneAndUpdate(
           { username: verified.username },
           { $push: { bookmark: [authData] } }
-        )
+        ) 
         .then((user) => {
           console.log(user);
         })
@@ -91,3 +91,15 @@ exports.bookmark = async (req, res) => {
     res.status(504).send({ error: "error no register succesfully" });
   }
 };
+
+
+exports.cookieCheck = (req,res)=>{
+  const token = req.cookies.token;
+  console.log(token)
+  if(token){
+     res.status(200).send("true")
+  }
+  else{
+     res.status(201).send(false) 
+  }
+}  

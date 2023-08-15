@@ -188,7 +188,7 @@ footer .footer-logo {
   .right {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     flex-direction: column;
   }
   .logo {
