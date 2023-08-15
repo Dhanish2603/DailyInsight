@@ -41,7 +41,7 @@ const PageLayout = (props) => {
   };
 
   useEffect(() => {
-    data();
+    // data();
   }, [props.category]);
 
   return (

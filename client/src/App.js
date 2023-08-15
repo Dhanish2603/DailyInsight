@@ -1,5 +1,6 @@
 import NavBar from "./components/NavBar";
 import PageLayout from "./components/Layout/PageLayout";
+import PageLayout from "./components/Layout/PageLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/Footer";
 import SignIn from "./components/Authentication/SignIn";

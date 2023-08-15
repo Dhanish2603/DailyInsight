@@ -26,8 +26,23 @@ const NavBar = () => {
           >
             GlobalUpdate
           </h1>
+          <h1
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            GlobalUpdate
+          </h1>
         </div>
         <div className="right">
+          <Link to="/technology">Technology</Link>
+          <Link to="/business">Business</Link>
+          <Link to="/health">Health</Link>
+          <Link to="/sports">Sports</Link>
+          <Link to="/bookmark">Bookmark</Link>
+          <Link onClick={logout} className="button" to="/signin">
+            SignOut
+          </Link>
           <Link to="/technology">Technology</Link>
           <Link to="/business">Business</Link>
           <Link to="/health">Health</Link>

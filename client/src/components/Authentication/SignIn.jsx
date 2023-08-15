@@ -24,6 +24,9 @@ function SignIn() {
       // post request for user signup
       await axios.post("http://localhost:5000/signin", UserData, {
         withCredentials: true,
+      // post request for user signup
+      await axios.post("http://localhost:5000/signin", UserData, {
+        withCredentials: true,
       });
       authctx.onFetch();
       console.log(authctx.isSignIn);
