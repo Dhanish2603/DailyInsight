@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import AuthContext from "../../store/context";
 const PageLayout = (props) => {
   const [news, setNews] = useState([]);
-
+  const authctx = useContext(AuthContext);
   const datasend = async (book) => {
     const { title, description, image } = book;
     const article = { title, description, image };
@@ -41,24 +42,29 @@ const PageLayout = (props) => {
   };
 
   useEffect(() => {
-    // data();
-  }, [props.category]);
+    if(authctx.isSignIn ) 
+    data();
+    authctx.onFetch()
+  }, [props.category,authctx.isSignIn]);
 
   return (
     <div className="container">
       <div className="news-section">
-        {news.map((data, index) => {
-          return (
-            <div key={index} className="news-card">
-              <img src={data.image} alt="News 1" />
-              <div className="news-card-content">
-                <h3>{data.title}</h3>
-                <p>{data.description}</p>
-                <button onClick={() => datasend(data)}>add to bookmark</button>
+        {authctx.isSignIn &&
+          news.map((data, index) => {
+            return (
+              <div key={index} className="news-card">
+                <img src={data.image} alt="News 1" />
+                <div className="news-card-content">
+                  <h3>{data.title}</h3>
+                  <p>{data.description}</p>
+                  <button onClick={() => datasend(data)}>
+                    add to bookmark
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );
