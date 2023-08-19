@@ -19,7 +19,7 @@ exports.signUp = (req, res) => {
     res.status(404).send({ error: "error no register succesfully" });
   }
 };
-
+ 
 exports.signIn = async (req, res) => {
   try {
     const data = req.body;
@@ -52,21 +52,21 @@ exports.signIn = async (req, res) => {
   }
 };
 
-exports.signOut = async (req,res)=>{
+exports.signOut = async (req, res) => {
   const token = req.cookies.token;
-  if(token){
+  if (token) {
     console.log("sign out succesfully");
-  return res.cookie("token","",{
-    httpOnly:true,
-    expires:new Date(0)
-  }).send("deleted")
-  }
-  else{
-    res.send("already signout")
+    return res
+      .cookie("token", "", {
+        httpOnly: true,
+        expires: new Date(0),
+      })
+      .send("deleted");
+  } else {
+    res.send("already signout");
     console.log("already sign out");
   }
-}
-
+};
 exports.bookmark = async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -89,5 +89,14 @@ exports.bookmark = async (req, res) => {
     }
   } catch (error) {
     res.status(504).send({ error: "error no register succesfully" });
+  }
+};
+
+exports.cookieCheck = async (req, res) => {
+  const token = req.cookies.token;
+  if (token) {
+    return res.send("true");
+  } else {
+    return res.send("false");
   }
 };

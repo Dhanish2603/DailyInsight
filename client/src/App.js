@@ -6,45 +6,49 @@ import SignIn from "./components/Authentication/SignIn";
 import SignUp from "./components/Authentication/SignUp";
 import BookMarks from "./components/Layout/BookMarks";
 import axios from "axios";
+import { useContext } from "react";
+import AuthContext from "./components/store/context";
 
 axios.defaults.withCredentials = true;
 
 function App() {
+  const authCtx = useContext(AuthContext)
+  
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <NavBar />,
+      element: authCtx.isLoggedIn ?<NavBar />: <SignIn />,
       children: [
         {
           path: "/",
-          element: <Footer />,
+          element: authCtx.isLoggedIn ?<Footer />: <SignIn />,
 
           children: [
             {
               path: "/",
-              element: <PageLayout category="general" />,
+              element: authCtx.isLoggedIn ?<PageLayout category="general" />: <SignIn />,
             },
 
             {
               path: "/bookmark",
-              element: <BookMarks />,
+              element: authCtx.isLoggedIn ?<BookMarks />: <SignIn />,
             },
             {
               path: "/technology",
-              element: <PageLayout category="technology" />,
+              element: authCtx.isLoggedIn ?<PageLayout category="technology" />: <SignIn />,
             },
             {
               path: "/business",
-              element: <PageLayout category="business" />,
+              element: authCtx.isLoggedIn ?<PageLayout category="business" />: <SignIn />,
             },
             {
               path: "/health",
-              element: <PageLayout category="health" />,
+              element: authCtx.isLoggedIn ?<PageLayout category="health" />: <SignIn />,
             },
 
             {
               path: "/sports",
-              element: <PageLayout category="sports" />,
+              element: authCtx.isLoggedIn ?<PageLayout category="sports" />: <SignIn />,
             },
           ],
         },
@@ -59,6 +63,7 @@ function App() {
       element: <SignUp />,
     },
   ]);
+
   return (
     <div className="App">
       <RouterProvider router={router} />
