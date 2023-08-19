@@ -22,7 +22,17 @@ nav {
   color: #fff;
   padding: 10px;
   width: 100%;
+  width: 100%;
   text-align: center;
+}
+nav h1 {
+  background-color: white;
+  color: #34495e;
+  border-radius: 12px;
+  padding: 2px;
+}
+nav .icon {
+  display: none;
 }
 nav h1 {
   background-color: white;
@@ -54,8 +64,15 @@ nav .button {
   color: #34495e;
   border-radius: 12px;
   padding: 5px;
+  background-color: white;
+  font-weight: bolder;
+  font-size: 14px;
+  color: #34495e;
+  border-radius: 12px;
+  padding: 5px;
 }
 .container {
+  width: 95%;
   width: 95%;
   margin: auto;
 }
@@ -72,6 +89,7 @@ nav .button {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  position: relative;
   position: relative;
 }
 
@@ -111,6 +129,15 @@ footer {
   padding: 10px;
 
   width: 100%;
+}
+footer .footer-logo {
+  background-color: white;
+  color: #34495e;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0 2px;
+  padding: 5px;
 }
 footer .footer-logo {
   background-color: white;

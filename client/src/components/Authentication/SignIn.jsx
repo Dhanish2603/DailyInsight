@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../store/context";
 
 function SignIn() {
+  const authctx = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const authCtx = useContext(AuthContext);
@@ -16,7 +17,11 @@ function SignIn() {
         username,
         password,
       };
+      console.log(authctx.isSignIn);
 
+      // post request for user signup
+      await axios.post("http://localhost:5000/signin", UserData, {
+        withCredentials: true,
       // post request for user signup
       axios.post("http://localhost:5000/signin", UserData, {
         withCredentials: true,
@@ -31,6 +36,8 @@ function SignIn() {
     }
   };
 
+
+  
   return (
     <div className="login-container">
       <h2> Welcome to SignIn</h2>
@@ -62,6 +69,7 @@ function SignIn() {
           >
             SignUp
           </button>
+          <button onClick={() => navigate("/signup")}>SignUp</button>
         </div>
       </form>
     </div>
