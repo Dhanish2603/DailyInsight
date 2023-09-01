@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import api from "../Api";
 const PageLayout = (props) => {
   const [news, setNews] = useState([]);
 
@@ -8,7 +9,7 @@ const PageLayout = (props) => {
     const article = { title, description, image };
 
     await axios
-      .post("http://localhost:5000/bookmark", article, {
+      .post(api + "/bookmark", article, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -34,7 +35,7 @@ const PageLayout = (props) => {
         return response.json();
       })
       .then(function (data) {
-        var articles = data.articles.slice(0, 20);
+        var articles = data.articles;
         setNews(articles);
         console.log(news);
       });
@@ -52,11 +53,31 @@ const PageLayout = (props) => {
             <div key={index} className="news-card">
               <img src={data.image} alt="News 1" />
               <div className="news-card-content">
-                <h3>{data.title}</h3>
-                <p>{data.description}</p>
-                <button onClick={() => datasend(data)}>add to bookmark</button>
+                <h3>{data.title.substring(0,30)}...</h3>
+                <p>{data.description.substring(0,70)}...</p>
+
               </div>
+              <button className="bookmark" onClick={() => datasend(data)}>
+                  Add to bookmark
+                </button>
             </div>
+            // <figure className="snip1216">
+            //   <div className="image">
+            //     <img src={data.image} alt="sample58" />
+            //   </div>
+            //   <figcaption>
+            //     <div className="date">
+            //       <span className="day">{data.publishedAt.split("-")[0]}</span>
+            //       <span className="month">
+            //         {data.publishedAt.split("-")[1]}
+            //       </span>
+            //     </div>
+            //     <h3>{data.title.substring(0, 30)}</h3>
+            //     <p>{data.description.substring(0, 70)}</p>
+            //   </figcaption>
+
+            //   <a href="#"></a>
+            // </figure>
           );
         })}
       </div>

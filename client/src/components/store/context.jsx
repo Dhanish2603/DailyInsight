@@ -1,15 +1,16 @@
-import {  useState } from "react";
+import { useState } from "react";
 import React from "react";
 import axios from "axios";
-
+import api from "../Api";
 const AuthContext = React.createContext({
   isLoggedIn: false,
   onFetch: () => {},
 });
+
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const cookieHandler = () => {
-    const response = axios.post("http://localhost:5000/cookieCheck");
+    const response = axios.post(api + "/cookieCheck");
 
     if (response) {
       setLoggedIn(true);
@@ -19,7 +20,6 @@ export const AuthContextProvider = (props) => {
       setLoggedIn(false);
     }
   };
-   
 
   return (
     <AuthContext.Provider

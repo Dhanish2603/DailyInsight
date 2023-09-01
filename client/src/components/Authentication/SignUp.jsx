@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import AuthContext from "../../store/context";
-
+import AuthContext from "../store/context";
+import api from "../Api";
 function SignUp() {
-  
   const ctx = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const handleLogin =  (e) => {
+
+  const handleLogin = (e) => {
     e.preventDefault();
     if (username.trim() !== "" && password.trim() !== "") {
       const UserData = {
@@ -17,10 +17,10 @@ function SignUp() {
         password: password,
       };
       // post request for user signup
-       axios.post("http://localhost:5000/signup", UserData, {
+      axios.post(api + "/signup", UserData, {
         withCredentials: true,
       });
-    // ctx.onFetch()
+      // ctx.onFetch()
     } else {
       alert("Please enter a valid username and password.");
     }

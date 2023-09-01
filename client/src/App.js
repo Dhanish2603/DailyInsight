@@ -1,6 +1,5 @@
 import NavBar from "./components/NavBar";
 import PageLayout from "./components/Layout/PageLayout";
-import PageLayout from "./components/Layout/PageLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/Footer";
 import SignIn from "./components/Authentication/SignIn";
@@ -32,7 +31,7 @@ function App() {
 
             {
               path: "/bookmark",
-              element: authCtx.isLoggedIn ?<BookMarks />: <SignIn />,
+              element: <BookMarks />,
             },
             {
               path: "/technology",
@@ -58,7 +57,7 @@ function App() {
   
     {
       path: "/signin",
-      element: ctx.isSignIn ? <PageLayout /> : <SignIn />,
+      element: authCtx.isSignIn ? <PageLayout category="general" /> : <SignIn />,
     },
     {
       path: "/signup",

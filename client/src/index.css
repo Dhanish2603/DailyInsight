@@ -89,8 +89,7 @@ nav .button {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  position: relative;
-  position: relative;
+
 }
 
 .news-card img {
@@ -114,11 +113,11 @@ nav .button {
 }
 .bookmark {
   background-color: #34495e;
-  position: absolute;
-  bottom: 15px;
+  padding: 5px;
+  font-weight: bold;
   width: 85%;
   color: white;
-  border-radius: 8px;
+  border-radius: 1px;
   margin: auto;
 }
 

@@ -19,26 +19,33 @@ exports.signUp = (req, res) => {
     res.status(404).send({ error: "error no register succesfully" });
   }
 };
- 
+
 exports.signIn = async (req, res) => {
   try {
     const data = req.body;
-    const dataCheck = await auth.findOne({ username: data.username });
     const dataCheck = await auth.findOne({ username: data.username });
     if (!dataCheck) {
       res.status(201).send("go to signin page");
     }
 
-    const isPasswordValid = await bcrypt.compare(data.password, dataCheck.password);
-        if(isPasswordValid){
-        const token =  jwt.sign({
-            username:dataCheck.username,
-          },'secret_key')
-          return res.status(200).json({  token: token })
-        }else{
-          return res.status(401).send("user not exist")
-        }
-   
+    const isPasswordValid = await bcrypt.compare(
+      data.password,
+      dataCheck.password
+    );
+    if (isPasswordValid) {
+      const token = jwt.sign(
+        {
+          username: dataCheck.username,
+        },
+        "secret_key"
+      );
+      return res
+        .status(200)
+        .cookie("token", token, { httpOnly: true })
+        .send("cookie added");
+    } else {
+      return res.status(401).send("user not exist");
+    }
   } catch (error) {
     console.log(error);
   }
@@ -80,7 +87,7 @@ exports.bookmark = async (req, res) => {
       res.send("completed");
     }
   } catch (error) {
-    res.status(504).send({ error: "error no register succesfully" });
+    res.status(404).send({ error: "error no register succesfully" });
   }
 };
 
@@ -90,5 +97,30 @@ exports.cookieCheck = async (req, res) => {
     return res.send("true");
   } else {
     return res.send("false");
+  }
+};
+
+exports.show = async (req, res) => {
+  try {
+    
+ 
+  const token = req.cookies.token;
+  const verified = jwt.verify(token, "secret_key");
+
+  if (verified) {
+    const authData = req.body;
+    console.log(authData);
+    await auth
+      .findOne({ username: verified.username })
+      .then((user) => {
+        console.log(user);
+        res.json(user.bookmark)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+ 
+  } } catch (error) {
+    console.log(error)
   }
 };

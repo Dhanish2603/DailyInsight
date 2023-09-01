@@ -2,14 +2,15 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../store/context";
+import api from "../Api";
 
 function SignIn() {
   const authctx = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const authCtx = useContext(AuthContext);
-
   const navigate = useNavigate();
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (username.trim() !== "" && password.trim() !== "") {
@@ -20,10 +21,7 @@ function SignIn() {
       console.log(authctx.isSignIn);
 
       // post request for user signup
-      await axios.post("http://localhost:5000/signin", UserData, {
-        withCredentials: true,
-      // post request for user signup
-      axios.post("http://localhost:5000/signin", UserData, {
+      axios.post(api + "/signin", UserData, {
         withCredentials: true,
       });
       const response = authCtx.onFetch();
@@ -36,8 +34,6 @@ function SignIn() {
     }
   };
 
-
-  
   return (
     <div className="login-container">
       <h2> Welcome to SignIn</h2>
@@ -63,11 +59,8 @@ function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <div className="button">
-          <button type="submit" onClick={()=>navigate("/")}>SignIn</button>
-          <button 
-          onClick={()=>navigate("/signup")}
-          >
-            SignUp
+          <button type="submit" onClick={() => navigate("/")}>
+            SignIn
           </button>
           <button onClick={() => navigate("/signup")}>SignUp</button>
         </div>
