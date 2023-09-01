@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "./components/Footer";
 import SignIn from "./components/Authentication/SignIn";
 import SignUp from "./components/Authentication/SignUp";
-import BookMarks from "./components/Layout/Bookmarks";
+import BookMarks from "./components/Layout/Bookmark";
 import axios from "axios";
 import { useContext } from "react";
 import AuthContext from "./components/store/context";
