@@ -6,7 +6,6 @@ import api from "../Api";
 
 function SignIn() {
   const authctx = useContext(AuthContext);
-  const authctx = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const authCtx = useContext(AuthContext);
