@@ -31,7 +31,7 @@ function App() {
 
             {
               path: "/bookmark",
-              element: <BookMarks />,
+              element: ctx.isSignIn ? <BookMarks /> : <SignIn />,
             },
             {
               path: "/technology",

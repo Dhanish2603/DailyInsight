@@ -6,6 +6,7 @@ import api from "../Api";
 
 function SignIn() {
   const authctx = useContext(AuthContext);
+  const authctx = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const authCtx = useContext(AuthContext);
@@ -18,6 +19,7 @@ function SignIn() {
         username,
         password,
       };
+      console.log(authctx.isSignIn);
       console.log(authctx.isSignIn);
 
       // post request for user signup
@@ -34,6 +36,8 @@ function SignIn() {
     }
   };
 
+
+  
   return (
     <div className="login-container">
       <h2> Welcome to SignIn</h2>

@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "./store/context";
 import api from "./Api";
 
 const NavBar = () => {
+  const authctx = useContext(AuthContext);
   const authctx = useContext(AuthContext);
   const navigate = useNavigate();
   const logout = () => {
