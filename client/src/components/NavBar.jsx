@@ -7,7 +7,6 @@ import api from "./Api";
 
 const NavBar = () => {
   const authctx = useContext(AuthContext);
-  const authctx = useContext(AuthContext);
   const navigate = useNavigate();
   const logout = () => {
     console.log(authctx.isSignIn);
