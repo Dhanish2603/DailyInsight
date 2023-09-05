@@ -6,7 +6,7 @@ const Footer = () => {
       <Outlet />
       <footer>
         <p>
-          &copy; 2023 <span className="footer-logo">GlobalUpdate</span> All
+          &copy; 2023 <span className="footer-logo">DailyInsight</span> All
           rights reserved.
         </p>
       </footer>

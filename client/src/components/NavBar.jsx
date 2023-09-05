@@ -25,7 +25,7 @@ const NavBar = () => {
               navigate("/");
             }}
           >
-            GlobalUpdate
+            DailyInsight
           </h1>
         </div>
         <div className="right">
