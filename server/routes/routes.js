@@ -1,7 +1,7 @@
 const express = require("express");
 const routes = express.Router();
 const controller = require("../controller/controller");
-
+ 
 const middleware = require("../controller/middleware/bookmark");
 routes.post("/signout", controller.signOut);
 routes.post("/bookmark", controller.bookmark);
