@@ -9,16 +9,18 @@ const AuthContext = React.createContext({
 
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const cookieHandler = () => {
-    const response = axios.post(api + "/cookieCheck");
-
-    if (response) {
-      setLoggedIn(true);
+  const cookieHandler = async() => {
+    const response =await axios.post(api + "/cookieCheck");
+      console.log(response)
+    if (response.data == true) { 
+      console.log('not working' )
+        setLoggedIn(true);
       console.log(isLoggedIn);
     } else {
       console.log(isLoggedIn);
       setLoggedIn(false);
     }
+    console.log(isLoggedIn);
   };
 
   return (

@@ -1,2 +1,2 @@
-const api = "https://global-dhanish-ihmt0gxxh-dhanish2603.vercel.app";
+const api = "https://daily-insight-pink.vercel.app";
 export default api;

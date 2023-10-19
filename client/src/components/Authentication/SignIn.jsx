@@ -11,7 +11,7 @@ function SignIn() {
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin =async (e) => {
     e.preventDefault();
     if (username.trim() !== "" && password.trim() !== "") {
       const UserData = {
@@ -21,11 +21,12 @@ function SignIn() {
       console.log(authctx.isSignIn);
 
       // post request for user signup
-      axios.post(api + "/signin", UserData, {
+    await  axios.post(api + "/signin", UserData, {
         withCredentials: true,
       });
+
       const response = authCtx.onFetch();
-      if (response === 1) {
+      if (response == 1) {
         console.log(authCtx.isLoggedIn);
       }
     } else {

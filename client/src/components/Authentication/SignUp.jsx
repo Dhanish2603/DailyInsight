@@ -20,6 +20,7 @@ function SignUp() {
       axios.post(api + "/signup", UserData, {
         withCredentials: true,
       });
+      navigate("/signin");
       // ctx.onFetch()
     } else {
       alert("Please enter a valid username and password.");
