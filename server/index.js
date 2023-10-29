@@ -5,16 +5,16 @@ const routes = require("./routes/routes");
 const db = require("./model/db");
 const cors = require("cors");
 require("dotenv").config();
-const helmet = require("helmet")
+const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 // middlewares
 app.use(
   cors({
-    origin: ["https://dailyinsight-app.netlify.app"],
+    origin:"*",
     credentials: true,
   })
 );
-app.use(helmet())
+app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
