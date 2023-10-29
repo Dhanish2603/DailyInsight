@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 // middlewares
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://dailyinsight-app.netlify.app"],
     credentials: true,
   })
 );
