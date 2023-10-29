@@ -8,7 +8,10 @@ require("dotenv").config();
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 // middlewares
-app.use(cors());
+app.use(cors({
+  origin:"*",
+  credentials:true
+}));
 app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());
