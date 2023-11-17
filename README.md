@@ -15,7 +15,7 @@ Before running this application, make sure you have the following installed:
 - Git (optional)
 ## Getting Started
 
-
+  
 
 1. Clone the Repository
 
