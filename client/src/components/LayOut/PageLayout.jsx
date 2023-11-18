@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import api from "../Api";
+import AuthContext from "../store/context";
+import SignIn from "../Authentication/SignIn";
+
 const PageLayout = (props) => {
+  const authCtx = useContext(AuthContext);
+  const [auth, setauth] = useState(<SignIn />);
   const [news, setNews] = useState([]);
 
   const datasend = async (book) => {
@@ -53,13 +58,12 @@ const PageLayout = (props) => {
             <div key={index} className="news-card">
               <img src={data.image} alt="News 1" />
               <div className="news-card-content">
-                <h3>{data.title.substring(0,30)}...</h3>
-                <p>{data.description.substring(0,70)}...</p>
-
+                <h3>{data.title.substring(0, 30)}...</h3>
+                <p>{data.description.substring(0, 70)}...</p>
               </div>
               <button className="bookmark" onClick={() => datasend(data)}>
-                  Add to bookmark
-                </button>
+                Add to bookmark
+              </button>
             </div>
             // <figure className="snip1216">
             //   <div className="image">

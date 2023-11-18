@@ -9,9 +9,9 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 // middlewares
 app.use(cors({
-  origin:"*",
-  credentials:true
-}));
+  origin : ["http://localhost:3000"],
+  credentials : true,
+}))
 // app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());

@@ -33,16 +33,18 @@ exports.signIn = async (req, res) => {
       dataCheck.password
     );
     if (isPasswordValid) {
+      console.log("working")
       const token = jwt.sign(
         {
           username: dataCheck.username,
         },
         "secret_key"
       );
+      console.log(token)
       return res
         .status(200)
         .cookie("token", token, { httpOnly: true })
-        .send("cookie added");
+        .send({token:token});
     } else {
       return res.status(401).send("user not exist");
     }

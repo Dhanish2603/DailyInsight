@@ -6,7 +6,7 @@
   "license": "ISC",
   "description": "",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

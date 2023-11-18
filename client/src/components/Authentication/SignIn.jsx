@@ -18,7 +18,7 @@ function SignIn() {
         username,
         password,
       };
-      console.log(authctx.isSignIn);
+      console.log(authctx.isLoggedIn);
 
       // post request for user signup
     await  axios.post(api + "/signin", UserData, {

@@ -17,16 +17,16 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: authCtx.isLoggedIn ?<NavBar />: <SignIn />,
+      element: !authCtx.isLoggedIn ?<NavBar />: <SignIn />,
       children: [
         {
           path: "/",
-          element: authCtx.isLoggedIn ?<Footer />: <SignIn />,
+          element: !authCtx.isLoggedIn ?<Footer />: <SignIn />,
 
           children: [
             {
               path: "/",
-              element: authCtx.isLoggedIn ?<PageLayout category="general" />: <SignIn />,
+              element: !authCtx.isLoggedIn ?<PageLayout category="general" />: <SignIn />,
             },
 
             {
