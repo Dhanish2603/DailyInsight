@@ -33,18 +33,18 @@ exports.signIn = async (req, res) => {
       dataCheck.password
     );
     if (isPasswordValid) {
-      console.log("working")
+      console.log("working");
       const token = jwt.sign(
         {
           username: dataCheck.username,
         },
         "secret_key"
       );
-      console.log(token)
+      console.log(token);
       return res
         .status(200)
         .cookie("token", token, { httpOnly: true })
-        .send({token:token});
+        .send({ token: token });
     } else {
       return res.status(401).send("user not exist");
     }
@@ -75,17 +75,26 @@ exports.bookmark = async (req, res) => {
     if (verified) {
       const authData = req.body;
       console.log(authData);
-      await auth
-        .findOneAndUpdate(
-          { username: verified.username },
-          { $push: { bookmark: [authData] } }
-        )
-        .then((user) => {
-          console.log(user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+
+      const booked = await auth.findOne({
+        username: verified.username,
+        "bookmark.title": authData.title,
+      });
+
+      if (booked) {
+        await auth
+          .findOneAndUpdate(
+            { username: verified.username },
+            { $push: { bookmark: [authData] } }
+          )
+          .then((user) => {
+            console.log(user);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
       res.send("completed");
     }
   } catch (error) {
@@ -104,25 +113,23 @@ exports.cookieCheck = async (req, res) => {
 
 exports.show = async (req, res) => {
   try {
-    
- 
-  const token = req.cookies.token;
-  const verified = jwt.verify(token, "secret_key");
+    const token = req.cookies.token;
+    const verified = jwt.verify(token, "secret_key");
 
-  if (verified) {
-    const authData = req.body;
-    console.log(authData);
-    await auth
-      .findOne({ username: verified.username })
-      .then((user) => {
-        console.log(user);
-        res.json(user.bookmark)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
- 
-  } } catch (error) {
-    console.log(error)
+    if (verified) {
+      const authData = req.body;
+      console.log(authData);
+      await auth
+        .findOne({ username: verified.username })
+        .then((user) => {
+          console.log(user);
+          res.json(user.bookmark);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  } catch (error) {
+    console.log(error);
   }
 };

@@ -4,11 +4,18 @@ import axios from "axios";
 import api from "../Api";
 const AuthContext = React.createContext({
   isLoggedIn: false,
+  bookmark: [],
   onFetch: () => {},
 });
 
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [bookmark, setbookmark] = useState([]);
+
+const fetchBookmark = ()=>{
+  
+}
+
   const cookieHandler = async () => {
     const response = await axios.post(api + "/cookieCheck");
     console.log(response);
@@ -24,6 +31,7 @@ export const AuthContextProvider = (props) => {
   };
   useEffect(() => {
     cookieHandler();
+    fetchBookmark();
   });
 
   return (

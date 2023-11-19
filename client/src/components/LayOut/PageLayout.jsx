@@ -65,23 +65,6 @@ const PageLayout = (props) => {
                 Add to bookmark
               </button>
             </div>
-            // <figure className="snip1216">
-            //   <div className="image">
-            //     <img src={data.image} alt="sample58" />
-            //   </div>
-            //   <figcaption>
-            //     <div className="date">
-            //       <span className="day">{data.publishedAt.split("-")[0]}</span>
-            //       <span className="month">
-            //         {data.publishedAt.split("-")[1]}
-            //       </span>
-            //     </div>
-            //     <h3>{data.title.substring(0, 30)}</h3>
-            //     <p>{data.description.substring(0, 70)}</p>
-            //   </figcaption>
-
-            //   <a href="#"></a>
-            // </figure>
           );
         })}
       </div>

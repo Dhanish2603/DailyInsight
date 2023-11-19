@@ -12,8 +12,7 @@ const NavBar = () => {
     axios.post(api + "/signout");
     console.log("done");
     authctx.onFetch();
-    console.log(authctx.isSignIn);
-    navigate("/sigin");
+    console.log(authctx.isSignIn); 
   };
   
   return (

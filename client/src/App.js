@@ -12,56 +12,47 @@ import AuthContext from "./components/store/context";
 axios.defaults.withCredentials = true;
 
 function App() {
-  const authCtx = useContext(AuthContext)
-  
+  const authCtx = useContext(AuthContext);
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: !authCtx.isLoggedIn ?<NavBar />: <SignIn />,
+      element: <NavBar />,
       children: [
         {
           path: "/",
-          element: !authCtx.isLoggedIn ?<Footer />: <SignIn />,
+          element: <Footer />,
 
           children: [
             {
               path: "/",
-              element: !authCtx.isLoggedIn ?<PageLayout category="general" />: <SignIn />,
+              element: <PageLayout category="general" />,
             },
 
             {
               path: "/bookmark",
-              element: <BookMarks />,
+              element:   <BookMarks />  ,
             },
             {
               path: "/technology",
-              element: authCtx.isLoggedIn ?<PageLayout category="technology" />: <SignIn />,
+              element: <PageLayout category="technology" />,
             },
             {
               path: "/business",
-              element: authCtx.isLoggedIn ?<PageLayout category="business" />: <SignIn />,
+              element: <PageLayout category="business" />,
             },
             {
               path: "/health",
-              element: authCtx.isLoggedIn ?<PageLayout category="health" />: <SignIn />,
+              element: <PageLayout category="health" />,
             },
 
             {
               path: "/sports",
-              element: authCtx.isLoggedIn ?<PageLayout category="sports" />: <SignIn />,
+              element: <PageLayout category="sports" />,
             },
           ],
         },
       ],
-    },
-  
-    {
-      path: "/signin",
-      element: authCtx.isSignIn ? <PageLayout category="general" /> : <SignIn />,
-    },
-    {
-      path: "/signup",
-      element: <SignUp />,
     },
   ]);
 
