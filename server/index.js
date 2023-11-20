@@ -8,10 +8,26 @@ require("dotenv").config();
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 // middlewares
-app.use(cors({
-  origin : ["http://localhost:3000","https://dailyinsight-app-client.netlify.app"],
-  credentials : true,
-}))
+// app.use((req, res, next) => {
+//   res.set({
+//     "Access-Control-Allow-Origin": "*",
+//     "Access-Control-Allow-Methods": "*",
+//     "Access-Control-Allow-Headers":
+//       "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+//   });
+
+//   next();
+// });
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://dailyinsight-app-client.netlify.app/",
+    ],
+    methods: ['GET', 'POST'],
+    credentials: true,
+  })
+);
 // app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());
