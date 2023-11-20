@@ -3,11 +3,23 @@ import axios from "axios";
 import api from "../Api";
 import AuthContext from "../store/context";
 import SignIn from "../Authentication/SignIn";
+import NewsModal from "../NewsModal";
 
 const PageLayout = (props) => {
   const authCtx = useContext(AuthContext);
-  const [auth, setauth] = useState(<SignIn />);
   const [news, setNews] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedNews, setSelectedNews] = useState(null);
+
+  const openModal = (data) => {
+    setSelectedNews(data);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedNews(null);
+    setModalOpen(false);
+  };
 
   const datasend = async (book) => {
     const { title, description, image } = book;
@@ -61,12 +73,19 @@ const PageLayout = (props) => {
                 <h3>{data.title.substring(0, 30)}...</h3>
                 <p>{data.description.substring(0, 70)}...</p>
               </div>
-              <button className="bookmark" onClick={() => datasend(data)}>
-                Add to bookmark
-              </button>
+              <button className="open-button" onClick={() => openModal(data)}>
+                  Read more
+                </button>
             </div>
           );
         })}
+        {modalOpen && (
+          <NewsModal
+            isOpen={openModal}
+            isClose={closeModal}
+            news={selectedNews}
+          />
+        )}
       </div>
     </div>
   );

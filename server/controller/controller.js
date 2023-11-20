@@ -79,24 +79,37 @@ exports.bookmark = async (req, res) => {
       const booked = await auth.findOne({
         username: verified.username,
         "bookmark.title": authData.title,
+        "bookmark.description": authData.description,
       });
 
-      if (booked) {
-        await auth
-          .findOneAndUpdate(
-            { username: verified.username },
-            { $push: { bookmark: [authData] } }
-          )
-          .then((user) => {
-            console.log(user);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      if (!booked) {
+        const finalBooked = await auth.findOneAndUpdate(
+          { username: verified.username },
+          { $push: { bookmark: [authData] } }
+        );
+        return finalBooked;
+      } else {
+        console.log("already exist");
       }
-
-      res.send("completed");
+      res.send(finalBooked);
+    } else {
+      return res.status(404).json("unauthorized");
     }
+    // await auth
+    //   .findOneAndUpdate(
+    //     { username: verified.username },
+    //     { $push: { bookmark: [authData] } }
+    //   )
+    //   .then((user) => {
+    //     console.log(user);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // }
+
+    // res.send("completed");
+    // }
   } catch (error) {
     res.status(404).send({ error: "error no register succesfully" });
   }

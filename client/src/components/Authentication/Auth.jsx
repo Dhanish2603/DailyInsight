@@ -1,80 +1,109 @@
-import axios from "axios";
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import AuthContext from "../store/context";
-import api from "../Api";
+import { Link } from "react-router-dom";
+import axios from "axios";
+// import AuthContext from "../context/AuthContext";
 
-function Auth() {
-  const authctx = useContext(AuthContext);
+import { useNavigate } from "react-router-dom";
+import api from "../Api";
+import AuthContext from "../store/context";
+export default function MainSignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [authState, setauthState] = useState(false);
-  const authCtx = useContext(AuthContext);
+  const [switchLogin, setSwitchLogin] = useState(false);
+
+  const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  // signup
+  const handleSignup = async (e) => {
     e.preventDefault();
     if (username.trim() !== "" && password.trim() !== "") {
       const UserData = {
-        username,
-        password,
+        username: username,
+        password: password,
       };
-      console.log(authctx.isLoggedIn);
-
       // post request for user signup
-      await axios.post(api + authState ? "/signin" : "/signup", UserData, {
+      await axios.post(api + "/signup", UserData, {
         withCredentials: true,
       });
-
-      const response = authCtx.onFetch();
-      if (response == 1) {
-        console.log(authCtx.isLoggedIn);
-      }
     } else {
-      console.log(authCtx.isLoggedIn);
+      alert("Please enter a valid username and password.");
+    }
+  };
+
+  //   singin
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (username.trim() !== "" && password.trim() !== "") {
+      const UserData = { username: username, password: password };
+      // post request of user using axios
+      await axios.post(api + "/signin", UserData, {
+        withCredentials: true,
+      });
+      // check token is valid or not
+      auth.onFetch();
+      console.log(auth.isLoggedIn);
+      // navigate("/");
+      window.location.reload();
+    } else {
       alert("Please enter a valid username and password.");
     }
   };
 
   return (
-    <div className="login-container">
-      <h2> Welcome to SignIn</h2>
-      <form className="login-form" action="/">
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Enter your username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
+    <div className="modal-overlay">
+      <div className="login-container">
+        <h2>Welcome to DailyInsight</h2>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div className="button">
-          {authState ? (
-            <button type="submit" onClick={handleLogin}>
-              SignIn
+        <div className="switch">
+          <button className="switchbtn" onClick={() => setSwitchLogin(true)}>
+            SignIn
+          </button>
+          <div className="line"></div>
+          <button className="switchbtn" onClick={() => setSwitchLogin(false)}>
+            SiginUp
+          </button>
+        </div>
+        <div className="banner">
+          {switchLogin ? <i>Please Login</i> : <i>SignUp to first</i>}
+        </div>
+        <form className="login-form">
+          {/* <label htmlFor="username">Username:</label> */}
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          {/* <label htmlFor="password">Password:</label> */}
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {switchLogin ? (
+            <button type="submit" className="submitbtn" onClick={handleLogin}>
+              Login
             </button>
           ) : (
-            <button type="submit" onClick={handleLogin}>
-              SignIn
+            <button className="submitbtn" type="submit" onClick={handleSignup}>
+              Register
             </button>
           )}
-          <button onClick={() => navigate("/signup")}>SignUp</button>
-        </div>
-      </form>
+
+          {/* <div>
+                        or create an new account!...
+                        <Link to="/signup">signup page</Link>
+                    </div> */}
+        </form>
+      </div>
     </div>
   );
 }
-
-export default Auth;

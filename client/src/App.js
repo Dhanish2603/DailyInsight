@@ -8,6 +8,7 @@ import BookMarks from "./components/Layout/Bookmark";
 import axios from "axios";
 import { useContext } from "react";
 import AuthContext from "./components/store/context";
+import Auth from "./components/Authentication/Auth";
 
 axios.defaults.withCredentials = true;
 
@@ -31,8 +32,9 @@ function App() {
 
             {
               path: "/bookmark",
-              element:   <BookMarks />  ,
+              element: authCtx.isLoggedIn ? <BookMarks /> : <Auth />,
             },
+
             {
               path: "/technology",
               element: <PageLayout category="technology" />,
