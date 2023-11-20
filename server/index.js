@@ -8,16 +8,16 @@ require("dotenv").config();
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 // middlewares
-// app.use((req, res, next) => {
-//   res.set({
-//     "Access-Control-Allow-Origin": "*",
-//     "Access-Control-Allow-Methods": "*",
-//     "Access-Control-Allow-Headers":
-//       "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
-//   });
+app.use((req, res, next) => {
+  res.set({
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "*",
+    "Access-Control-Allow-Headers":
+      "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+  });
 
-//   next();
-// });
+  next();
+});
 app.use(
   cors({
     origin: [
