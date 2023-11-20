@@ -9,7 +9,7 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 // middlewares
 app.use(cors({
-  origin : ["http://localhost:3000"],
+  origin : ["http://localhost:3000","https://dailyinsight-app-client.netlify.app"],
   credentials : true,
 }))
 // app.use(helmet());
