@@ -37,7 +37,13 @@ export default function MainSignIn() {
     if (username.trim() !== "" && password.trim() !== "") {
       const UserData = { username: username, password: password };
       // post request of user using axios
-      await axios.post(api + "/signin", UserData, {
+      let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": 'GET, POST, PUT, DELETE, OPTIONS',
+        }
+      };
+      await axios.post(api + "/signin", UserData,axiosConfig, {
         withCredentials: true,
       });
       // check token is valid or not

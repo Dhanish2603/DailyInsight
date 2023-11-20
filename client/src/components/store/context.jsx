@@ -17,7 +17,13 @@ const fetchBookmark = ()=>{
 }
 
   const cookieHandler = async () => {
-    const response = await axios.post(api + "/cookieCheck");
+    let axiosConfig = {
+      headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          "Access-Control-Allow-Origin": "GET, POST, PUT, DELETE, OPTIONS",
+      }
+    };
+    const response = await axios.post(api + "/cookieCheck",axiosConfig);
     console.log(response);
     if (response.data === true) {
       // console.log('not working' )

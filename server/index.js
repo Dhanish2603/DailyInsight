@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
+      "http://localhost:5000",
       "https://dailyinsight-app-client.netlify.app/",
     ],
     methods: ['GET', 'POST'],
@@ -29,6 +29,7 @@ app.use(
   })
 );
 // app.use(helmet());
+app.use("/",express.static(__dirname+"/build"))
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
