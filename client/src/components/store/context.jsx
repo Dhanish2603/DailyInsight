@@ -12,18 +12,18 @@ export const AuthContextProvider = (props) => {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [bookmark, setbookmark] = useState([]);
 
-const fetchBookmark = ()=>{
-  
-}
+  const fetchBookmark = () => {};
 
   const cookieHandler = async () => {
     let axiosConfig = {
       headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          "Access-Control-Allow-Origin": "GET, POST, PUT, DELETE, OPTIONS",
-      }
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "GET, POST, PUT, DELETE, OPTIONS",
+      },
     };
-    const response = await axios.post(api + "/cookieCheck",axiosConfig);
+    const response = await axios.post(api + "/cookieCheck", axiosConfig, {
+      withCredentials: "include",
+    });
     console.log(response);
     if (response.data === true) {
       // console.log('not working' )

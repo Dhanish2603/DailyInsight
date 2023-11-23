@@ -24,7 +24,7 @@ export default function MainSignIn() {
       };
       // post request for user signup
       await axios.post(api + "/signup", UserData, {
-        withCredentials: true,
+        withCredentials: 'include',
       });
     } else {
       alert("Please enter a valid username and password.");
@@ -44,7 +44,7 @@ export default function MainSignIn() {
         }
       };
       await axios.post(api + "/signin", UserData,axiosConfig, {
-        withCredentials: true,
+        withCredentials: 'include',
       });
       // check token is valid or not
       auth.onFetch();
