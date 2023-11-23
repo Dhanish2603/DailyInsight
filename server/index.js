@@ -22,8 +22,9 @@ app.use(
   cors({
     origin: [
       "http://localhost:5000",
-      "https://dailyinsight-app-client.netlify.app/",
-      "https://daily-insight-client.vercel.app/"
+      "https://dailyinsight-app-client.netlify.app",
+      "https://daily-insight-client.vercel.app",
+      "https://daily-insight-client-fnzirnuig-dhanish2603.vercel.app"
     ],
     methods: ['GET', 'POST'],
     credentials: true,

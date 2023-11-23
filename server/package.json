@@ -4,6 +4,7 @@
   "main": "app.js",
   "author": "",
   "license": "ISC",
+  "proxy":"https://daily-insight-client-fnzirnuig-dhanish2603.vercel.app",
   "description": "",
   "scripts": {
     "start": "nodemon index.js"
