@@ -23,6 +23,7 @@ app.use(
     origin: [
       "http://localhost:5000",
       "https://dailyinsight-app-client.netlify.app/",
+      "daily-insight-client.vercel.app"
     ],
     methods: ['GET', 'POST'],
     credentials: true,
