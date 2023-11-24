@@ -1,2 +1,2 @@
-const api = "https://daily-insight-server.vercel.app";
+const api = "http://localhost:5000";
 export default api;
