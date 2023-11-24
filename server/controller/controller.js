@@ -43,7 +43,7 @@ exports.signIn = async (req, res) => {
       console.log(token);
       return res
         .status(200)
-        .cookie("token", token, { httpOnly: true })
+        .cookie("token", token, { httpOnly: true,secure: true, sameSite: 'None', })
         .send({ token: token });
     } else {
       return res.status(401).send("user not exist");
