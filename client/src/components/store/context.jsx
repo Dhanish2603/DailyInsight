@@ -21,9 +21,7 @@ export const AuthContextProvider = (props) => {
         "Access-Control-Allow-Origin": "GET, POST, PUT, DELETE, OPTIONS",
       },
     };
-    const response = await axios.post(api + "/cookieCheck", axiosConfig, {
-      withCredentials: "include",
-    });
+    const response = await axios.post(api + "/cookieCheck", axiosConfig);
     console.log(response);
     if (response.data === true) {
       // console.log('not working' )

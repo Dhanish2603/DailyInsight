@@ -23,9 +23,7 @@ export default function MainSignIn() {
         password: password,
       };
       // post request for user signup
-      await axios.post(api + "/signup", UserData, {
-        withCredentials: 'include',
-      });
+      await axios.post(api + "/signup", UserData);
     } else {
       alert("Please enter a valid username and password.");
     }
@@ -39,13 +37,11 @@ export default function MainSignIn() {
       // post request of user using axios
       let axiosConfig = {
         headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            "Access-Control-Allow-Origin": 'GET, POST, PUT, DELETE, OPTIONS',
-        }
+          "Content-Type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "GET, POST, PUT, DELETE, OPTIONS",
+        },
       };
-      await axios.post(api + "/signin", UserData,axiosConfig, {
-        withCredentials: true,
-      });
+      await axios.post(api + "/signin", UserData, axiosConfig);
       // check token is valid or not
       auth.onFetch();
       console.log(auth.isLoggedIn);
