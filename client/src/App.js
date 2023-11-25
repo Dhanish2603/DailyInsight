@@ -10,7 +10,7 @@ import { useContext } from "react";
 import AuthContext from "./components/store/context";
 import Auth from "./components/Authentication/Auth";
 
-
+axios.defaults.withCredentials = 'true';
 
 function App() {
   const authCtx = useContext(AuthContext);
