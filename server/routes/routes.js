@@ -7,7 +7,7 @@ routes.post("/signout", controller.signOut);
 routes.post("/bookmark", controller.bookmark);
 routes.post("/show", controller.show);
 routes.get("/", (req, res) => {
-  res.send("hello welcome to news feed");
+  res.send("hello welcome to sahil feed");
 });
 
 routes.post("/signin", controller.signIn);
