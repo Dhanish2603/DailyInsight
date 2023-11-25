@@ -30,9 +30,7 @@ const path = require("path");
 //   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
 app.use(
-  cors({
-    origin: "*",
-  })
+  cors( )
 );
 // app.use(helmet());
 // app.use("/", express.static(__dirname + "/build"));
