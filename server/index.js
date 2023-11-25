@@ -7,7 +7,8 @@ const cors = require("cors");
 require("dotenv").config();
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
-const path = require("path")
+const path = require("path");
+
 // middlewares
 app.use((req, res, next) => {
   res.set({
@@ -22,6 +23,8 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, "build")));
 
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 // Handle other routes by serving the index.html file
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));

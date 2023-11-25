@@ -44,13 +44,13 @@ export default function MainSignIn() {
         }
       };
       await axios.post(api + "/signin", UserData,axiosConfig, {
-        withCredentials: 'include',
+        withCredentials: true,
       });
       // check token is valid or not
       auth.onFetch();
       console.log(auth.isLoggedIn);
       // navigate("/");
-      window.location.reload();
+      // window.location.reload();
     } else {
       alert("Please enter a valid username and password.");
     }
