@@ -1,11 +1,11 @@
 
-# 🎯 GlobalUpdate
+# 🎯 DailyInsight
 
-![NewsFeed](https://socialify.git.ci/Dhanish2603/NewsFeed/image?description=1&descriptionEditable=GlobalUpdate%20is%20a%20dynamic%20and%20user-friendly%20news%20feed%20website%20that%20delivers%20a%20comprehensive%20and%20up-to-the-minute%20overview%20of%20global%20news.&font=Inter&language=1&name=1&owner=1&pattern=Brick%20Wall&theme=Dark)
+![NewsFeed](https://socialify.git.ci/Dhanish2603/NewsFeed/image?description=1&descriptionEditable=DailyInsight%20is%20a%20dynamic%20and%20user-friendly%20news%20feed%20website%20that%20delivers%20a%20comprehensive%20and%20up-to-the-minute%20overview%20of%20global%20news.&font=Inter&language=1&name=1&owner=1&pattern=Brick%20Wall&theme=Dark)
 
-## MERN Stack GlobalUpdate Application
+## MERN Stack DailyInsight Application
 
-This repository contains the code for a basic GlobalUpdate application built using the MERN (MongoDB, Express.js, React, Node.js) stack. The application allows users to view and post news articles, providing a seamless and responsive user experience.
+This repository contains the code for a basic DailyInsight application built using the MERN (MongoDB, Express.js, React, Node.js) stack. The application allows users to view and post news articles, providing a seamless and responsive user experience.
 ## Prerequisites
 
 Before running this application, make sure you have the following installed:
@@ -20,8 +20,8 @@ Before running this application, make sure you have the following installed:
 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Dhanish2603/GlobalUpdate.git
-cd GlobalUpdate
+git clone https://github.com/Dhanish2603/DailyInsight.git
+cd DailyInsight
 
 ```
 2. Install Dependencies
@@ -71,7 +71,7 @@ npm start
 
 ```bash
 
-mern-GlobalUpdate-app/
+mern-DailyInsight-app/
 ├── client/
 │   ├── public/
 │   ├── src/
